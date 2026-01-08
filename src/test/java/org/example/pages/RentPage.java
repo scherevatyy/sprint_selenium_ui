@@ -36,6 +36,7 @@ public class RentPage {
 
 //    Окно успешного заказа
     private final By successModal = By.id("Order_Modal__YZ-d3");
+    private final By successModalText = By.className("Order_ModalHeader__3FDaJ");
 
 
     public void createOrder() {
@@ -47,6 +48,10 @@ public class RentPage {
 
     public boolean isSuccessModalDisplayed() {
         return driver.findElement(successModal).isDisplayed();
+    }
+
+    public String getSuccessModalText() {
+        return driver.findElement(successModalText).getText();
     }
 
     public RentPage fillForm(OrderDTO order) {

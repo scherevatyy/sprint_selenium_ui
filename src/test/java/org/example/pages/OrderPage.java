@@ -3,6 +3,10 @@ package org.example.pages;
 import org.example.model.OrderDTO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class OrderPage {
     private final WebDriver driver;
@@ -43,8 +47,12 @@ public class OrderPage {
     }
 
     public void selectMetro(String metro) {
+        driver.findElement(metroInput).click();
         driver.findElement(metroInput).sendKeys(metro);
-        driver.findElement(By.xpath("//div[text()='" + metro + "']")).click();
+        By metroOption = By.xpath("//div[text()='" + metro + "']");
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(metroOption))
+                .click();
     }
 
     public void setPhone(String phone) {

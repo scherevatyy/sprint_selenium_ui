@@ -3,7 +3,7 @@ package org.example.utils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import static org.example.utils.Config.BASE_URL;
 
 public abstract class BaseTest {
 
@@ -11,8 +11,8 @@ public abstract class BaseTest {
 
     @BeforeEach
     void setUp() {
-        driver = new ChromeDriver();
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver = WebDriverFactory.createDriver();
+        driver.get(BASE_URL);
     }
 
     @AfterEach

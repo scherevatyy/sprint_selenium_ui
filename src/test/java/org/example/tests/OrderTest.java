@@ -30,8 +30,18 @@ class OrderTest extends BaseTest {
 
         RentPage rentPage = new RentPage(driver);
         rentPage.fillForm(order).createOrder();
+        String successText = rentPage.getSuccessModalText();
 
-        Assertions.assertTrue(rentPage.isSuccessModalDisplayed(), "Окно успешного оформления заказа не появилось");
+        Assertions.assertAll(
+                () -> Assertions.assertTrue(
+                        successText.contains("Заказ оформлен"),
+                        "Нет заголовка успешного заказа"
+                ),
+                () -> Assertions.assertTrue(
+                        successText.contains("Номер заказа"),
+                        "Нет текста с номером заказа"
+                )
+        );
     }
 
     @ParameterizedTest
@@ -43,10 +53,17 @@ class OrderTest extends BaseTest {
 
         RentPage rentPage = new RentPage(driver);
         rentPage.fillForm(order).createOrder();
+        String successText = rentPage.getSuccessModalText();
 
-        Assertions.assertTrue(
-                rentPage.isSuccessModalDisplayed(),
-                "Окно успешного оформления заказа не появилось"
+        Assertions.assertAll(
+                () -> Assertions.assertTrue(
+                        successText.contains("Заказ оформлен"),
+                        "Нет заголовка успешного заказа"
+                ),
+                () -> Assertions.assertTrue(
+                        successText.contains("Номер заказа"),
+                        "Нет текста с номером заказа"
+                )
         );
     }
 }

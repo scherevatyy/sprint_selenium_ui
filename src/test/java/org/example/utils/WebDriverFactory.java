@@ -6,7 +6,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class WebDriverFactory {
 
-    public static WebDriver createDriver(String browser) {
+    public static WebDriver createDriver() {
+        String browser = System.getProperty("browser");
         if ("firefox".equalsIgnoreCase(browser)) {
             return new FirefoxDriver();
         }
